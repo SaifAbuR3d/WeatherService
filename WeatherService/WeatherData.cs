@@ -1,35 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Xml;
+using System.Xml.Serialization;
 
 namespace WeatherService
 {
-    // publisher
-    internal class WeatherData : IWeatherDataPublisher
+    [XmlRoot("WeatherData")]
+    public class WeatherData
     {
-        public int Humidity { get; init; }
-        public int Temperature { get; init; }
+        [XmlElement("Location")]
+        public string Location { get; init; }
 
-        private List<IWeatherBotSubscriber> _subscribers = new List<IWeatherBotSubscriber>();
-
-        public void Attach(IWeatherBotSubscriber observer)
-        {
-            _subscribers.Add(observer);
-        }
-
-        public void Detach(IWeatherBotSubscriber observer)
-        {
-            _subscribers.Remove(observer);
-        }
-
-        public void Notify()
-        {
-            foreach (var subscriber in _subscribers)
-            {
-                subscriber.ProcessWeatherUpdate(this); 
-            }
-        }
+        [XmlElement("Humidity")]
+        public double Humidity { get; init; }
+        [XmlElement("Temperature")]
+        public double Temperature { get; init; }
     }
 }
