@@ -15,8 +15,8 @@ namespace WeatherService.PubSub.Bot
             if (!Enabled) return;
             if (weatherData.Temperature < TemperatureThreshold)
             {
-                Console.WriteLine("SnowBot Activated!");
-                Console.WriteLine($"SnowBot: \"{Message}\"");
+                Console.WriteLine("Snowbot Activated!");
+                Console.WriteLine($"Snowbot: \"{Message}\"");
             }
         }
     }

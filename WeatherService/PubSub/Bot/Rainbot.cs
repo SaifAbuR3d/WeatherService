@@ -15,8 +15,8 @@ namespace WeatherService.PubSub.Bot
             if (!Enabled) return;
             if (weatherData.Humidity > HumidityThreshold)
             {
-                Console.WriteLine("RainBot Activated!");
-                Console.WriteLine($"RainBot: \"{Message}\"");
+                Console.WriteLine("Rainbot Activated!");
+                Console.WriteLine($"Rainbot: \"{Message}\"");
             }
         }
     }

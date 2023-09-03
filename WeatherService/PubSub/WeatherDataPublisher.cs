@@ -24,21 +24,23 @@ namespace WeatherService.PubSub
             }
         }
 
+        public List<IWeatherBotSubscriber> Subscribers { get => _subscribers; set => _subscribers = value; } 
+
         private List<IWeatherBotSubscriber> _subscribers = new List<IWeatherBotSubscriber>();
-        public WeatherDataPublisher(string text, ITextFormatStrategy textFormat, BotConfig botConfig)
+        public WeatherDataPublisher(string text, ITextFormatStrategy textFormatStrategy , BotConfig botConfig)
         {
             InitializeSubscribers(botConfig);
 
-            _weatherData = textFormat.GetWeatherData(text);
+            _weatherData = textFormatStrategy.GetWeatherData(text);
 
             Notify();
         }
 
-        private void InitializeSubscribers(BotConfig botConfig)
+        public void InitializeSubscribers(BotConfig botConfig)
         {
-            Attach(botConfig.RainBot);
-            Attach(botConfig.SnowBot);
-            Attach(botConfig.SunBot);
+            Attach(botConfig.Rainbot);
+            Attach(botConfig.Snowbot);
+            Attach(botConfig.Sunbot);
         }
 
         public void Attach(IWeatherBotSubscriber observer)

@@ -4,7 +4,6 @@ namespace WeatherService
 {
     public static class TextFormatStrategyFactory
     {
-
         public static ITextFormatStrategy? GetTextFormatStrategy(string? weatherDataFilePath)
         {
             if (String.IsNullOrEmpty(weatherDataFilePath))
