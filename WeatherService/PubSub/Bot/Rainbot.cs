@@ -1,6 +1,8 @@
 ﻿#nullable disable
 
-namespace WeatherService.Bot
+using WeatherService;
+
+namespace WeatherService.PubSub.Bot
 {
     public class Rainbot : IWeatherBotSubscriber
     {
@@ -8,11 +10,12 @@ namespace WeatherService.Bot
         public int HumidityThreshold { get; init; }
         public string Message { get; init; }
 
-        public void ProcessWeatherUpdate(IWeatherDataPublisher weatherDataPublisher)
+        public void ProcessWeatherUpdate(WeatherData weatherData)
         {
             if (!Enabled) return;
-            if (((WeatherData)weatherDataPublisher).Humidity > HumidityThreshold)
+            if (weatherData.Humidity > HumidityThreshold)
             {
+                Console.WriteLine("RainBot Activated!");
                 Console.WriteLine($"RainBot: \"{Message}\"");
             }
         }

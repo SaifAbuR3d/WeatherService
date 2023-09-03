@@ -1,6 +1,8 @@
 ﻿#nullable disable
 
-namespace WeatherService.Bot
+using WeatherService;
+
+namespace WeatherService.PubSub.Bot
 {
     public class Sunbot : IWeatherBotSubscriber
     {
@@ -8,11 +10,12 @@ namespace WeatherService.Bot
         public int TemperatureThreshold { get; init; }
         public string Message { get; init; }
 
-        public void ProcessWeatherUpdate(IWeatherDataPublisher weatherDataPublisher)
+        public void ProcessWeatherUpdate(WeatherData weatherData)
         {
             if (!Enabled) return;
-            if ( ((WeatherData)weatherDataPublisher).Temperature > TemperatureThreshold )
+            if (weatherData.Temperature > TemperatureThreshold)
             {
+                Console.WriteLine("SunBot Activated!");
                 Console.WriteLine($"SunBot: \"{Message}\"");
             }
         }

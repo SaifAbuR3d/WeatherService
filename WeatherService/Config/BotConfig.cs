@@ -1,6 +1,6 @@
 ﻿#nullable disable
 
-using WeatherService.Bot;
+using WeatherService.PubSub.Bot;
 
 namespace WeatherService.Config
 {
