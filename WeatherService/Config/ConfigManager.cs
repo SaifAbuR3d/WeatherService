@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using WeatherService.PubSub;
 
 namespace WeatherService.Config
 {
